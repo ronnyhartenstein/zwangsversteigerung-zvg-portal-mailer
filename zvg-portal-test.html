@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+    <head>
+        <title>Justizportal - Verfahren</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta content="Justizportal des Bundes und der Länder" name="DC.Description" />
+        <meta content="Referat Öffentlichkeitsarbeit" name="DC.Author" />
+        <meta content="Justizportal des Bundes und der Länder" name="DC.Page-topic" />
+	
+	<meta content="noindex,nofollow,nosnippet,noarchive,noodp" name="Robots" />
+
+        <link href="mailto:redaktion@justiz.de" title="Mail" rel="author" />
+        <link href="http://www.justiz.de/Uebersicht.php" title="Inhaltsverzeichnis" rel="contents" />
+        <link href="http://www.justiz.de/index.php" title="Startseite" rel="start" />
+        <link href="http://www.justiz.de/Impressum.php" title="Impressum" rel="copyright" />
+        <link href="http://www.justiz.de/index.php#suchzeile" title="Suchen" rel="search" />
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+<LINK title=Basis-Stylesheet href="images/basis.css" type=text/css rel=stylesheet >
+
+    </head>
+
+<SCRIPT>
+function blaettern(nseite,nl,nr,norder_by,ndesc)
+{
+
+var seite='';
+var l='';
+var r='';
+var all='';
+var order_by='';
+var desc='';
+
+
+//alert(seite+'-'+l+'-'+r+'-'+order_by+'-'+desc);
+
+//dropdown -> alle
+if(nseite=='all'){
+	var URL='index.php?button=Suchen&all=1';
+	//return location.replace(URL);
+ 	document.form_sucheZvg.action=URL;
+	document.form_sucheZvg.submit();
+return;
+}
+//dorpdown menue
+if(nl==-1 && nr==-1 && norder_by==-1 && ndesc==-1){
+        x=nseite.split("-");
+ 	var URL='index.php?button=Suchen&seite='+x[0]+'&l='+x[1]+'&r='+x[2]+'&order_by='+order_by+'&desc='+desc;
+//	return location.replace(URL);
+ 	document.form_sucheZvg.action=URL;
+        document.form_sucheZvg.submit();
+return;
+}
+//sortieren, nicht blaettern
+if(norder_by!=-1){
+ 	var URL='index.php?button=Suchen&seite='+seite+'&l='+l+'&r='+r+'&all='+all+'&order_by='+norder_by+'&desc='+ndesc+'';
+//return location.replace(URL);
+ 	document.form_sucheZvg.action=URL;
+        document.form_sucheZvg.submit();
+return;
+
+}
+var URL='index.php?button=Suchen&seite='+nseite+'&l='+nl+'&r='+nr+'&all='+all+'&order_by='+norder_by+'&desc='+ndesc;
+//return location.replace(URL);
+ document.form_sucheZvg.action=URL;
+        document.form_sucheZvg.submit();
+
+
+}
+</SCRIPT>
+
+    <body>
+        <!-- Kopfbereich -->
+        <a name="top"></a>
+        <a href="http://www.justiz.de/" title="Link zur Startseite"><img src="images/justitia.gif" alt="Justitia auf Deutschlandkarte" id="logo" height="132" width="160"></a>
+        <h1 id="kopf">Zwangsversteigerungstermine</h1>
+        <div id="micronavi" ><!-- Micronavi -->
+        Sie sind hier:
+            <ul>
+                <li><a href="index.php?button=Termine suchen"><span class=pfeil>&gt;</span>Termine suchen</a></li>            </ul>
+        </div><!-- ende Micronavi -->
+
+
+
+        <!-- Ende Kopfbereich -->
+
+<div id="container"><!-- Container -->
+<div id="navi" class="noprint"> <!-- Navigation linke Seite -->
+            <ul class="hinterlegt">
+		<li><a href='index.php?button=Termine suchen'
+					 >Termine suchen</a></li>
+		
+		 <li><a href='index.php?button=Uebersicht'
+                                         >&Uuml;bersicht</a></li>
+
+		 <li><a href='index.php?button=Hinweise fuer Bieter'
+                                         >Hinweise f&uuml;r Bieter</a></li>
+
+		 <li><a href='index.php?button=handbuch&sess_clean=1' target=_blanc
+                                         >Bieter Handbuch</a></li>
+
+            </ul>
+            <ul class="binnennavi">
+                <li><a href="index.php?button=Startseite" title="Startseite">Startseite</a></li>
+                <li><a href="index.php?button=Impressum">Impressum</a></li>
+                <li><a href="http://www.justiz.de/rechtliche_hinweise/index.php" target=_blank>Rechtliche Hinweise</a></li>
+    		<li><a href="index.php?button=Kontakt">Kontakt</a></li>
+            </ul>
+                <div id="zusatznavi">
+
+<p>ServiceCenter<br>0211 837 1917<br><a href="mailto:redaktion@justiz.de">redaktion@justiz.de</a></p>
+</div>
+
+            <form action="http://www.justiz.de/suchergebnis/index.php" method="get"><label class="small" for="query">Suche</label><br>
+                <input name="q" id="suchzeile" type="text"><input src="images/lupe.gif" alt="" type="image">
+            </form>
+        </div> <!-- Ende Navigation -->
+
+        <div id="inhalt"><!-- Inhalt -->
+                <p>
+<nobr><H3>Alle Termine, Insgesamt 16
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button onClick="document.form_sucheZvg.action='index.php?button=Termine suchen';document.form_sucheZvg.submit();">Suche ändern</button></h3></nobr>
+<form name=form_sucheZvg method=post>
+<input type=hidden name=ger_name value='Chemnitz'>
+<input type=hidden name=order_by value='2'>
+<input type=hidden name=land_abk value='sn'>
+<input type=hidden name=ger_id value='U1206'>
+<input type=hidden name=az1 value=''>
+<input type=hidden name=az2 value=''>
+<input type=hidden name=az3 value=''>
+<input type=hidden name=az4 value=''>
+<input type=hidden name=art value=''>
+<input type=hidden name=obj value=''>
+<input type=hidden name=obj_arr[] value=3>
+<input type=hidden name=obj_arr[] value=15>
+<input type=hidden name=obj_arr[] value=16>
+<input type=hidden name=obj_liste value='16'>
+<input type=hidden name=str value=''>
+<input type=hidden name=hnr value=''>
+<input type=hidden name=plz value=''>
+<input type=hidden name=ort value=''>
+<input type=hidden name=ortsteil value=''>
+<input type=hidden name=vtermin value=''>
+<input type=hidden name=btermin value=''>
+<!--Seiten zum Blaettern-->
+		<table border=1><tr><td><SELECT  size=1  onChange="blaettern(this.options[this.selectedIndex].value,'-1','-1','-1','-1')"><OPTION VALUE="1-1-11" SELECTED>1-2</option><OPTION VALUE="all" >alle</option></SELECT></td><td><button class=seiten_nr onMouseOver="this.className='seiten_nr_hover'" 
+     onMouseOut="this.className='seiten_nr'"	onClick=blaettern('1','1','3','-1','-1')>[1]</button><button class=seiten_nr onMouseOver="this.className='seiten_nr_hover'" 
+     onMouseOut="this.className='seiten_nr'"	onClick=blaettern('2','1','3','-1','-1')>&nbsp;2&nbsp;</button></td></tr></table>
+		<!--Seiten zum Blaettern Ende--><table border=0>   <!--Aktenzeichen--->
+		<TR><TD vAlign=top align=left ><nobr>Aktenzeichen&nbsp;&nbsp;</nobr></td><td vAlign=center align=left><b>
+		<a target=blank_ href=index.php?button=showZvg&zvg_id=29897&land_abk=sn>
+		<nobr>0027 K 0300/2016&nbsp;(Detailansicht)</nobr></a></b>&nbsp;</td>
+		<TD vAlign=top align=right ><nobr>(letzte Aktualisierung 25-01-2017 10:21)</nobr></td></tr>
+		<!--Amtsgericht--->
+		<TR><TD vAlign=top align=left >Amtsgericht</td><td vAlign=center align=left  colspan=2><b>Chemnitz in Sachsen</b></td></tr>
+		<TR ><TD vAlign=top align=left >Objekt/Lage</td><td vAlign=center align=left colspan=2><b>Einfamilienhaus<!--Lage--->:</b> Rainbachweg 6, 08324 Bockau</td></tr>
+  		<TR><TD vAlign=top align=left ><nobr>Verkehrswert in &#128;&nbsp;</nobr></td><td vAlign=center align=left  colspan=2><b><p><strong><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: DE; mso-fareast-language: DE; mso-bidi-language: AR-SA;">80.100,00</span></strong><strong><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: DE; mso-fareast-language: DE; mso-bidi-language: AR-SA;"> </span></strong></p>
+<p>&nbsp;</p></b></td></tr>
+		<TR><TD vAlign=top align=left >Termin</td><td vAlign=center align=left  
+				colspan=2>Dienstag, 28. März 2017, 11:00 Uhr</td></tr><tr><td></td><td align=left colspan=2><a target=_blank href="?button=showAnhang&land_abk=sn&file_id=80084&zvg_id=29897 "/>Amtliche Bekanntmachung</a><img src=images/pdf.gif class=icon alt='PDF-Dokument, öffnet neues Browserfenster' height=18 width=18>
+<span class=kleinereSchrift>179.04 kB</span>
+</td></tr><tr><td  colspan=3><hr></td></tr>    <!--Aktenzeichen--->
+                <TR><TD vAlign=top align=left ><nobr>Aktenzeichen&nbsp;&nbsp;</nobr></td><td vAlign=center align=left><b><font size=2px>
+                <nobr>0027 K 0113/2016</nobr></b>&nbsp;</font</font></td>
+                <TD vAlign=top align=right ><nobr>(letzte Aktualisierung 10-03-2017 12:00)</nobr></td></tr>
+ <!--Amtsgericht--->
+                <TR><TD vAlign=top align=left >Amtsgericht</td><td vAlign=center align=left  colspan=2><b>Chemnitz in Sachsen</b></td></tr>
+
+		<TR><TD vAlign=top align=left >Termin</td><td vAlign=center align=left  colspan=2>
+		<FONT COLOR="#C00000"><b>Der Termin Dienstag, 04. April 2017, 11:00 Uhr wurde aufgehoben.</b></FONT></td></tr><tr><td  colspan=3><hr></td></tr>   <!--Aktenzeichen--->
+		<TR><TD vAlign=top align=left ><nobr>Aktenzeichen&nbsp;&nbsp;</nobr></td><td vAlign=center align=left><b>
+		<a target=blank_ href=index.php?button=showZvg&zvg_id=29936&land_abk=sn>
+		<nobr>0014 K 0436/2013&nbsp;(Detailansicht)</nobr></a></b>&nbsp;</td>
+		<TD vAlign=top align=right ><nobr>(letzte Aktualisierung 01-02-2017 15:00)</nobr></td></tr>
+		<!--Amtsgericht--->
+		<TR><TD vAlign=top align=left >Amtsgericht</td><td vAlign=center align=left  colspan=2><b>Chemnitz in Sachsen</b></td></tr>
+		<TR ><TD vAlign=top align=left >Objekt/Lage</td><td vAlign=center align=left colspan=2><b>Einfamilienhaus<!--Lage--->:</b> Zur alten Sch&auml;ferei 16, 04749  Ostrau OT Zschochau</td></tr>
+  		<TR><TD vAlign=top align=left ><nobr>Verkehrswert in &#128;&nbsp;</nobr></td><td vAlign=center align=left  colspan=2><b><p><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: DE; mso-fareast-language: DE; mso-bidi-language: AR-SA;"><strong>27.300,00 EUR f&uuml;r Grundst&uuml;ck und Geb&auml;ude</strong></span></p>
+<p>&nbsp;</p></b></td></tr>
+		<TR><TD vAlign=top align=left >Termin</td><td vAlign=center align=left  
+				colspan=2>Mittwoch, 05. April 2017, 09:00 Uhr</td></tr><tr><td></td><td align=left colspan=2><a target=_blank href="?button=showAnhang&land_abk=sn&file_id=80192&zvg_id=29936 "/>Amtliche Bekanntmachung</a><img src=images/pdf.gif class=icon alt='PDF-Dokument, öffnet neues Browserfenster' height=18 width=18>
+<span class=kleinereSchrift>175.92 kB</span>
+</td></tr><tr><td  colspan=3><hr></td></tr>   <!--Aktenzeichen--->
+		<TR><TD vAlign=top align=left ><nobr>Aktenzeichen&nbsp;&nbsp;</nobr></td><td vAlign=center align=left><b>
+		<a target=blank_ href=index.php?button=showZvg&zvg_id=29984&land_abk=sn>
+		<nobr>0009 K 0594/2015&nbsp;(Detailansicht)</nobr></a></b>&nbsp;</td>
+		<TD vAlign=top align=right ><nobr>(letzte Aktualisierung 08-02-2017 08:23)</nobr></td></tr>
+		<!--Amtsgericht--->
+		<TR><TD vAlign=top align=left >Amtsgericht</td><td vAlign=center align=left  colspan=2><b>Chemnitz in Sachsen</b></td></tr>
+		<TR ><TD vAlign=top align=left >Objekt/Lage</td><td vAlign=center align=left colspan=2><b>Einfamilienhaus, Sonstiges<!--Lage--->:</b> Am Steinbach  15, 09661 Striegistal OT Etzdorf</td></tr>
+  		<TR><TD vAlign=top align=left ><nobr>Verkehrswert in &#128;&nbsp;</nobr></td><td vAlign=center align=left  colspan=2><b><p>9.000,00</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></b></td></tr>
+		<TR><TD vAlign=top align=left >Termin</td><td vAlign=center align=left  
+				colspan=2>Mittwoch, 05. April 2017, 09:00 Uhr</td></tr><tr><td></td><td align=left colspan=2><a target=_blank href="?button=showAnhang&land_abk=sn&file_id=80331&zvg_id=29984 "/>Amtliche Bekanntmachung</a><img src=images/pdf.gif class=icon alt='PDF-Dokument, öffnet neues Browserfenster' height=18 width=18>
+<span class=kleinereSchrift>174.38 kB</span>
+</td></tr><tr><td  colspan=3><hr></td></tr>   <!--Aktenzeichen--->
+		<TR><TD vAlign=top align=left ><nobr>Aktenzeichen&nbsp;&nbsp;</nobr></td><td vAlign=center align=left><b>
+		<a target=blank_ href=index.php?button=showZvg&zvg_id=29933&land_abk=sn>
+		<nobr>0015 K 0513/2014&nbsp;(Detailansicht)</nobr></a></b>&nbsp;</td>
+		<TD vAlign=top align=right ><nobr>(letzte Aktualisierung 01-02-2017 14:36)</nobr></td></tr>
+		<!--Amtsgericht--->
+		<TR><TD vAlign=top align=left >Amtsgericht</td><td vAlign=center align=left  colspan=2><b>Chemnitz in Sachsen</b></td></tr>
+		<TR ><TD vAlign=top align=left >Objekt/Lage</td><td vAlign=center align=left colspan=2><b>Einfamilienhaus<!--Lage--->:</b> Dorfstra&szlig;e 56, 09526 Pfaffroda OT Hallbach</td></tr>
+  		<TR><TD vAlign=top align=left ><nobr>Verkehrswert in &#128;&nbsp;</nobr></td><td vAlign=center align=left  colspan=2><b><p><strong>80.000,00</strong></p>
+<p>&nbsp;</p></b></td></tr>
+		<TR><TD vAlign=top align=left >Termin</td><td vAlign=center align=left  
+				colspan=2>Mittwoch, 05. April 2017, 13:00 Uhr</td></tr><tr><td></td><td align=left colspan=2><a target=_blank href="?button=showAnhang&land_abk=sn&file_id=80183&zvg_id=29933 "/>Amtliche Bekanntmachung</a><img src=images/pdf.gif class=icon alt='PDF-Dokument, öffnet neues Browserfenster' height=18 width=18>
+<span class=kleinereSchrift>180.35 kB</span>
+</td></tr><tr><td  colspan=3><hr></td></tr>   <!--Aktenzeichen--->
+		<TR><TD vAlign=top align=left ><nobr>Aktenzeichen&nbsp;&nbsp;</nobr></td><td vAlign=center align=left><b>
+		<a target=blank_ href=index.php?button=showZvg&zvg_id=30010&land_abk=sn>
+		<nobr>0009 K 0188/2014&nbsp;(Detailansicht)</nobr></a></b>&nbsp;</td>
+		<TD vAlign=top align=right ><nobr>(letzte Aktualisierung 13-02-2017 12:03)</nobr></td></tr>
+		<!--Amtsgericht--->
+		<TR><TD vAlign=top align=left >Amtsgericht</td><td vAlign=center align=left  colspan=2><b>Chemnitz in Sachsen</b></td></tr>
+		<TR ><TD vAlign=top align=left >Objekt/Lage</td><td vAlign=center align=left colspan=2><b>Einfamilienhaus<!--Lage--->:</b> Dorfstr. 36, 04736 Waldheim, Meinsberg</td></tr>
+  		<TR><TD vAlign=top align=left ><nobr>Verkehrswert in &#128;&nbsp;</nobr></td><td vAlign=center align=left  colspan=2><b><p>24.000,00</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></b></td></tr>
+		<TR><TD vAlign=top align=left >Termin</td><td vAlign=center align=left  
+				colspan=2>Dienstag, 11. April 2017, 11:00 Uhr</td></tr><tr><td></td><td align=left colspan=2><a target=_blank href="?button=showAnhang&land_abk=sn&file_id=80416&zvg_id=30010 "/>Amtliche Bekanntmachung</a><img src=images/pdf.gif class=icon alt='PDF-Dokument, öffnet neues Browserfenster' height=18 width=18>
+<span class=kleinereSchrift>182.77 kB</span>
+</td></tr><tr><td  colspan=3><hr></td></tr>   <!--Aktenzeichen--->
+		<TR><TD vAlign=top align=left ><nobr>Aktenzeichen&nbsp;&nbsp;</nobr></td><td vAlign=center align=left><b>
+		<a target=blank_ href=index.php?button=showZvg&zvg_id=30064&land_abk=sn>
+		<nobr>0023 K 0179/2015&nbsp;(Detailansicht)</nobr></a></b>&nbsp;</td>
+		<TD vAlign=top align=right ><nobr>(letzte Aktualisierung 22-02-2017 07:33)</nobr></td></tr>
+		<!--Amtsgericht--->
+		<TR><TD vAlign=top align=left >Amtsgericht</td><td vAlign=center align=left  colspan=2><b>Chemnitz in Sachsen</b></td></tr>
+		<TR ><TD vAlign=top align=left >Objekt/Lage</td><td vAlign=center align=left colspan=2><b>Einfamilienhaus, Garage<!--Lage--->:</b> Klosterg&auml;&szlig;chen 8, 04720 D&ouml;beln</td></tr>
+  		<TR><TD vAlign=top align=left ><nobr>Verkehrswert in &#128;&nbsp;</nobr></td><td vAlign=center align=left  colspan=2><b><p><span style="font-family: Times New Roman; font-size: small;"> </span></p>
+<p style="margin: 0cm 0cm 0pt;"><strong></strong>&nbsp;<span style="font-family: Times New Roman; font-size: small;"> </span></p>
+<p style="margin: 0cm 0cm 0pt;"><strong><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></strong><strong><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt;">7.500,00</span></strong><strong><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt;"> Euro </span></strong><strong><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt;"><span style="mso-no-proof: yes;">(Grundst&uuml;ck Flst. 681)</span></span></strong></p>
+<p style="margin: 0cm 0cm 0pt;"><span style="font-family: Times New Roman; font-size: small;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
+<p style="margin: 0cm 0cm 0pt;"><strong><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt;"><span style="mso-tab-count: 3;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></strong><strong><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt;">77.500,00<span style="mso-no-proof: yes;"> Euro (Grundst&uuml;ck Flst. 685)</span></span></strong></p>
+<p style="margin: 0cm 0cm 0pt;"><span style="font-family: Times New Roman; font-size: small;"> </span></p>
+<p style="margin: 0cm 0cm 0pt;"><strong><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt; mso-no-proof: yes;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>750,00 Euro (K&uuml;cheneinrichtung)</span></strong></p>
+<p style="margin: 0cm 0cm 0pt;"><span style="font-family: Times New Roman; font-size: small;"> </span></p>
+<p style="margin: 0cm 0cm 0pt;"><strong><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt; mso-no-proof: yes;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>---------------------</span></strong></p>
+<p style="margin: 0cm 0cm 0pt;"><span style="font-family: Times New Roman; font-size: small;"> </span></p>
+<p style="margin: 0cm 0cm 0pt;"><strong><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt; mso-no-proof: yes;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>insgesamt: 85.750,00 Euro</span></strong></p>
+<p style="margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt;"><span style="font-family: Times New Roman; font-size: small;"> </span><strong><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 11pt; mso-bidi-font-size: 12.0pt; mso-no-proof: yes; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: DE; mso-fareast-language: DE; mso-bidi-language: AR-SA;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>============<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></strong></p></b></td></tr>
+		<TR><TD vAlign=top align=left >Termin</td><td vAlign=center align=left  
+				colspan=2>Mittwoch, 19. April 2017, 11:00 Uhr</td></tr><tr><td></td><td align=left colspan=2><a target=_blank href="?button=showAnhang&land_abk=sn&file_id=80555&zvg_id=30064 "/>Amtliche Bekanntmachung</a><img src=images/pdf.gif class=icon alt='PDF-Dokument, öffnet neues Browserfenster' height=18 width=18>
+<span class=kleinereSchrift>214.84 kB</span>
+</td></tr><tr><td  colspan=3><hr></td></tr>   <!--Aktenzeichen--->
+		<TR><TD vAlign=top align=left ><nobr>Aktenzeichen&nbsp;&nbsp;</nobr></td><td vAlign=center align=left><b>
+		<a target=blank_ href=index.php?button=showZvg&zvg_id=30073&land_abk=sn>
+		<nobr>0023 K 0116/2015&nbsp;(Detailansicht)</nobr></a></b>&nbsp;</td>
+		<TD vAlign=top align=right ><nobr>(letzte Aktualisierung 22-02-2017 08:54)</nobr></td></tr>
+		<!--Amtsgericht--->
+		<TR><TD vAlign=top align=left >Amtsgericht</td><td vAlign=center align=left  colspan=2><b>Chemnitz in Sachsen</b></td></tr>
+		<TR ><TD vAlign=top align=left >Objekt/Lage</td><td vAlign=center align=left colspan=2><b>unbebautes Grundst&uuml;ck<!--Lage--->:</b> Richard-Schreyer-Stra&szlig;e 15,17, 09627 Bobritzsch-Hilbersdorf, Niederbobritzsch</td></tr>
+  		<TR><TD vAlign=top align=left ><nobr>Verkehrswert in &#128;&nbsp;</nobr></td><td vAlign=center align=left  colspan=2><b><p>53.000,00</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></b></td></tr>
+		<TR><TD vAlign=top align=left >Termin</td><td vAlign=center align=left  
+				colspan=2>Dienstag, 25. April 2017, 11:00 Uhr</td></tr><tr><td></td><td align=left colspan=2><a target=_blank href="?button=showAnhang&land_abk=sn&file_id=80587&zvg_id=30073 "/>Amtliche Bekanntmachung</a><img src=images/pdf.gif class=icon alt='PDF-Dokument, öffnet neues Browserfenster' height=18 width=18>
+<span class=kleinereSchrift>171.32 kB</span>
+</td></tr><tr><td  colspan=3><hr></td></tr>   <!--Aktenzeichen--->
+		<TR><TD vAlign=top align=left ><nobr>Aktenzeichen&nbsp;&nbsp;</nobr></td><td vAlign=center align=left><b>
+		<a target=blank_ href=index.php?button=showZvg&zvg_id=30123&land_abk=sn>
+		<nobr>0022 K 0238/2015&nbsp;(Detailansicht)</nobr></a></b>&nbsp;</td>
+		<TD vAlign=top align=right ><nobr>(letzte Aktualisierung 09-03-2017 07:03)</nobr></td></tr>
+		<!--Amtsgericht--->
+		<TR><TD vAlign=top align=left >Amtsgericht</td><td vAlign=center align=left  colspan=2><b>Chemnitz in Sachsen</b></td></tr>
+		<TR ><TD vAlign=top align=left >Objekt/Lage</td><td vAlign=center align=left colspan=2><b>unbebautes Grundst&uuml;ck<!--Lage--->:</b> ., 09471 K&ouml;nigswalde</td></tr>
+  		<TR><TD vAlign=top align=left ><nobr>Verkehrswert in &#128;&nbsp;</nobr></td><td vAlign=center align=left  colspan=2><b><p>39.800,00</p>
+<p>&nbsp;</p></b></td></tr>
+		<TR><TD vAlign=top align=left >Termin</td><td vAlign=center align=left  
+				colspan=2>Mittwoch, 26. April 2017, 11:00 Uhr</td></tr><tr><td></td><td align=left colspan=2><a target=_blank href="?button=showAnhang&land_abk=sn&file_id=80699&zvg_id=30123 "/>Amtliche Bekanntmachung</a><img src=images/pdf.gif class=icon alt='PDF-Dokument, öffnet neues Browserfenster' height=18 width=18>
+<span class=kleinereSchrift>168.55 kB</span>
+</td></tr><tr><td  colspan=3><hr></td></tr>   <!--Aktenzeichen--->
+		<TR><TD vAlign=top align=left ><nobr>Aktenzeichen&nbsp;&nbsp;</nobr></td><td vAlign=center align=left><b>
+		<a target=blank_ href=index.php?button=showZvg&zvg_id=30142&land_abk=sn>
+		<nobr>0024 K 0183/2014&nbsp;(Detailansicht)</nobr></a></b>&nbsp;</td>
+		<TD vAlign=top align=right ><nobr>(letzte Aktualisierung 02-03-2017 09:00)</nobr></td></tr>
+		<!--Amtsgericht--->
+		<TR><TD vAlign=top align=left >Amtsgericht</td><td vAlign=center align=left  colspan=2><b>Chemnitz in Sachsen</b></td></tr>
+		<TR ><TD vAlign=top align=left >Objekt/Lage</td><td vAlign=center align=left colspan=2><b>Einfamilienhaus<!--Lage--->:</b> Forststra&szlig;e 12 F, 08294 L&ouml;&szlig;nitz</td></tr>
+  		<TR><TD vAlign=top align=left ><nobr>Verkehrswert in &#128;&nbsp;</nobr></td><td vAlign=center align=left  colspan=2><b><p><span><strong><span style="mso-no-proof: yes;">393.000,00</span> </strong></span></p>
+<p>&nbsp;</p></b></td></tr>
+		<TR><TD vAlign=top align=left >Termin</td><td vAlign=center align=left  
+				colspan=2>Donnerstag, 11. Mai 2017, 09:00 Uhr</td></tr><tr><td></td><td align=left colspan=2><a target=_blank href="?button=showAnhang&land_abk=sn&file_id=80739&zvg_id=30142 "/>Amtliche Bekanntmachung</a><img src=images/pdf.gif class=icon alt='PDF-Dokument, öffnet neues Browserfenster' height=18 width=18>
+<span class=kleinereSchrift>187.42 kB</span>
+</td></tr><tr><td  colspan=3><hr></td></tr></table>
+<!--Zwangsversteigerungen Ende--></table>
+<nobr><H3>Alle Termine, Insgesamt 16
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button onClick="document.form_sucheZvg.action='index.php?button=Termine suchen';document.form_sucheZvg.submit();">Suche ändern</button></h3></nobr>
+<!--Seiten zum Blaettern-->
+		<table border=1><tr><td><SELECT  size=1  onChange="blaettern(this.options[this.selectedIndex].value,'-1','-1','-1','-1')"><OPTION VALUE="1-1-11" SELECTED>1-2</option><OPTION VALUE="all" >alle</option></SELECT></td><td><button class=seiten_nr onMouseOver="this.className='seiten_nr_hover'" 
+     onMouseOut="this.className='seiten_nr'"	onClick=blaettern('1','1','3','-1','-1')>[1]</button><button class=seiten_nr onMouseOver="this.className='seiten_nr_hover'" 
+     onMouseOut="this.className='seiten_nr'"	onClick=blaettern('2','1','3','-1','-1')>&nbsp;2&nbsp;</button></td></tr></table>
+		<!--Seiten zum Blaettern Ende--></form></p>
+        </div><!-- ende Inhalt -->
+
+         <div id="addinfo"><!-- ende Addinfo -->
+            <h3>Weitere Infos</h3>
+            <ul>
+                <li class="publication"><a target=_blank  href="http://www.justiz.de">Justizportal des Bundes und der L&auml;nder</a></li>
+                <li class="publication"><a target=_blank  href="http://www.handelsregister.de">Gemeinsames Registerportal der L&auml;nder</a></li>
+                <!-- li class="publication"><a target=_blank  href="Zustaendigkeitsliste.pdf">Liste der zust&auml;ndigen Registrierungsbeh&ouml;rden</a></li -->
+                <!-- li class="publication"><a  href="index.php?button=Antragsformulare&sess_clean=1">Antragsformulare</a></li-->
+            </ul>
+        </div><!-- ende Addinfo -->
+
+<div class="screen" id="footer"><!-- Footer -->
+             <p><nobr><a href="javascript:window.print()">Seite drucken</a>&nbsp;.&nbsp;<a href="#inhalt">zum Anfang</a></nobr></p>
+        </div><!-- Ende Footer -->
+
+ </div><!-- ende Container -->
+
+    </body>
+</html>
+

@@ -196,7 +196,7 @@ function process_notify_items(&$items) {
             'Content-Type' => 'application/x-www-form-urlencoded',
             'Referer' => 'http://www.zvg-portal.de/index.php?button=Suchen',
         ];
-        $response = $client->get( '/index.php?button=showZvg&zvg_id=31626&land_abk=sn', [
+        $response = $client->get( '/index.php?button=showZvg&zvg_id='.$id.'&land_abk=sn', [
             'headers' => $headers,
             //'debug' => true,
         ]);

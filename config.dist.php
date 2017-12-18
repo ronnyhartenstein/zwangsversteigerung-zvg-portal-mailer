@@ -7,4 +7,5 @@ return [
     'mail_pwd' => '?',
     'mail_from' => '?@?',
     'mail_to' => ['?@?', '?@?'],
+    'web_host' => 'http://*',
 ];

@@ -16,6 +16,15 @@ $client = new Client([
     'timeout'  => 5.0,
 ]);
 
+function stop($msg)
+{
+    global $stats;
+    $log = __DIR__ . '/storage/run.log';
+    $text = '[' . date('Y-m-d H:i:s') . '] ' . $msg . (!empty($stats) ? ' ' . $stats : '')."\n";
+    file_put_contents($log, $text, FILE_APPEND);
+    exit($msg);
+}
+
 /**
  * Liste
  */
@@ -37,7 +46,7 @@ curl 'http://www.zvg-portal.de/index.php?button=Suchen&all=1' \
 
 $headers = [
     'Content-Type' => 'application/x-www-form-urlencoded',
-    'Referer' => 'http://www.zvg-portal.de/index.php?button=Termine%20suchen',
+    'Referer' => $base_uri.'/index.php?button=Termine%20suchen',
 ];
 
 $data_raw = 'ger_name=Chemnitz&order_by=2&land_abk=sn&ger_id=U1206&az1=&az2=&az3=&az4=&art=&obj=&obj_arr%5B%5D=3&obj_arr%5B%5D=15&obj_arr%5B%5D=16&obj_liste=15&obj_liste=16&str=&hnr=&plz=&ort=&ortsteil=&vtermin=&btermin=';
@@ -62,7 +71,7 @@ $response = $client->post( '/index.php?button=Suchen&all=1', [
 ]);
 
 if ($response->getStatusCode() != 200) {
-    die('Error: Status '.$response->getStatusCode());
+    stop('Error: Status '.$response->getStatusCode());
 }
 
 $body = $response->getBody()->getContents();
@@ -80,7 +89,7 @@ echo "fetched\n";
  * Kern extrahieren
  */
 if (strpos($body, '<!--Aktenzeichen--->') === false || strpos($body, '<!--Zwangsversteigerungen Ende-->') === false) {
-    die('ERROR: cut');
+    stop('ERROR: cut');
 }
 
 $body = substr($body, strpos($body, '<!--Aktenzeichen--->'));
@@ -98,7 +107,7 @@ echo "extracted core\n";
 $items = explode('<!--Aktenzeichen--->', $body);
 $items = array_filter($items, function($n) { return !empty($n); });
 if (empty($items)) {
-    die("ERROR: 0 items");
+    stop("ERROR: 0 items");
 }
 echo count($items)." items fetched\n";
 
@@ -120,6 +129,7 @@ if (file_exists($cache_json)) {
 
 $ids_cache = is_array($cache) ? array_keys($cache) : [];
 $ids_fetched = [];
+$ids_deleted = [];
 $notify_new = [];
 $notify_changed = [];
 foreach ($items as $i => $item) {
@@ -132,7 +142,9 @@ foreach ($items as $i => $item) {
     }
     $id = $match[1];
     $ids_fetched[] = $id;
-    if (!isset($cache[$id])) {
+    if (preg_match('/Der Termin .+ wurde aufgehoben/', $item)) {
+        $ids_deleted[] = $id;
+    } else if (!isset($cache[$id])) {
         $cache[$id] = $item;
         $notify_new[] = $item;
     } else {
@@ -147,7 +159,7 @@ foreach ($items as $i => $item) {
 /**
  * alte Einträge beräumen
  */
-$ids_deleted = array_diff($ids_cache, $ids_fetched);
+$ids_deleted = array_merge($ids_deleted, array_diff($ids_cache, $ids_fetched));
 foreach($ids_deleted as $id) {
     unset($cache[$id]);
     $details_file = $details_dir.'/'.$id.'.html';
@@ -167,13 +179,14 @@ echo "cache saved\n";
 /**
  * Statistiken
  */
-echo count($notify_new)." new, ".count($notify_changed)." changed, ".count($ids_deleted)." deleted\n";
+$stats = count($notify_new)." new, ".count($notify_changed)." changed, ".count($ids_deleted)." deleted";
+echo "$stats\n";
 
 /**
  * Benachrichtigen bei neuen od. geänderten Einträgen
  */
 if (empty($notify_new) && empty($notify_changed)) {
-    die("nothing to do..");
+    stop("nothing to do..");
 }
 
 /**
@@ -185,11 +198,11 @@ curl 'http://www.zvg-portal.de/index.php?button=showZvg&zvg_id=31626&land_abk=sn
     -H 'Referer: http://www.zvg-portal.de/index.php?button=Suchen'
 */
 function process_notify_items(&$items) {
-    global $base_uri, $details_dir, $client;
+    global $base_uri, $details_dir, $client, $config;
     if (!file_exists($details_dir)) {
         mkdir($details_dir, 0775);
     }
-    $handler = function($m) use ($base_uri, $details_dir, $client) {
+    $handler = function($m) use ($base_uri, $details_dir, $client, $config) {
         $url = $m[1];
         $id = $m[2];
         $headers = [
@@ -218,7 +231,7 @@ function process_notify_items(&$items) {
 </body>
 </html>';
         file_put_contents($details_dir.'/'.$id.'.html', $body);
-        return 'href=/storage/details/'.$id.'.html';
+        return 'href='.$config['web_host'].'/storage/details/'.$id.'.html';
     };
     foreach ($items as &$item) {
         if ($item = preg_replace_callback('/href=(index\.php\?button=showZvg&zvg_id=(\d+)&land_abk=sn)/', $handler, $item)) {
@@ -233,7 +246,7 @@ function process_notify_items(&$items) {
  * Mailbody bauen
  */
 
-$mail_body = '<base href="http://zwangsversteigerung.pi.rh-flow.de">';
+$mail_body = '';
 if (!empty($notify_new)) {
     process_notify_items($notify_new);
     $mail_body.= "<h2>NEU</h2>\n"
@@ -252,17 +265,21 @@ file_put_contents(__DIR__.'/storage/last_mail.html', $mail_body);
  * Mailen
  */
 
+$subject = 'Zwangsversteigerung Update: '.count($notify_new).' neu, '.count($notify_changed).' geändert';
+$from = 'Zwangsversteigerung Mailer';
+
 $transport = (new Swift_SmtpTransport($config['mail_host'], $config['mail_port'], 'tls'))
     ->setUsername($config['mail_user'])
     ->setPassword($config['mail_pwd']);
 $mailer = new Swift_Mailer($transport);
-$message = (new Swift_Message('Zwangsversteigerung Update: '.count($notify_new).' neu, '.count($notify_changed).' geändert'))
-    ->setFrom([$config['mail_from'] => 'Zwangsversteigerung Mailer'])
+$message = (new Swift_Message())
+    ->setFrom([$config['mail_from'] => $from])
     ->setTo($config['mail_to'])
     ->setBody($mail_body, 'text/html');
 $result = $mailer->send($message);
 if (!$result) {
-    die("ERROR mail not sent");
+    stop("ERROR mail not sent");
 }
 echo "mail sent\n";
+stop("done");
 

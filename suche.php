@@ -179,7 +179,7 @@ echo "cache saved\n";
 /**
  * Statistiken
  */
-$stats = count($notify_new)." new, ".count($notify_changed)." changed, ".count($ids_deleted)." deleted";
+$stats = count($notify_new)." neu, ".count($notify_changed)." geändert, ".count($ids_deleted)." gelöscht";
 echo "$stats\n";
 
 /**
@@ -265,14 +265,14 @@ file_put_contents(__DIR__.'/storage/last_mail.html', $mail_body);
  * Mailen
  */
 
-$subject = 'Zwangsversteigerung Update: '.count($notify_new).' neu, '.count($notify_changed).' geändert';
+$subject = 'Zwangsversteigerung Update: '.$stats;
 $from = 'Zwangsversteigerung Mailer';
 
 $transport = (new Swift_SmtpTransport($config['mail_host'], $config['mail_port'], 'tls'))
     ->setUsername($config['mail_user'])
     ->setPassword($config['mail_pwd']);
 $mailer = new Swift_Mailer($transport);
-$message = (new Swift_Message())
+$message = (new Swift_Message($subject))
     ->setFrom([$config['mail_from'] => $from])
     ->setTo($config['mail_to'])
     ->setBody($mail_body, 'text/html');

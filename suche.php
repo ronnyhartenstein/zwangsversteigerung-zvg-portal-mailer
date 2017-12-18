@@ -246,7 +246,8 @@ function process_notify_items(&$items) {
  * Mailbody bauen
  */
 
-$mail_body = '';
+$mail_body = '
+<a href="'.$base_uri.'/index.php?button=Termine%20suchen"><strong>Zum Portal</strong></a> (sorry, direkte Absprünge funktionieren nicht)';
 if (!empty($notify_new)) {
     process_notify_items($notify_new);
     $mail_body.= "<h2>NEU</h2>\n"

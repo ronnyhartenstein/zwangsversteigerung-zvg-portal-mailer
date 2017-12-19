@@ -2,6 +2,11 @@
 
 require __DIR__.'/vendor/autoload.php';
 
+if (empty($argv[1]) || !preg_match('/^[A-Za-z]+:U\d{4}/', $argv[1])) {
+    die('call: '.__FILE__.' [Chemnitz:U1206|Zwickau:U1222|..]');
+}
+list($gericht_name, $gericht_id) = explode(':', $argv[1]);
+
 use GuzzleHttp\Client;
 
 $config = require(__DIR__.'/config.php');
@@ -9,21 +14,21 @@ $config = require(__DIR__.'/config.php');
 $base_uri = 'http://www.zvg-portal.de';
 $details_dir = __DIR__.'/storage/details';
 
+function stop($msg)
+{
+    global $stats, $gericht_name;
+    $log = __DIR__ . '/storage/run.log';
+    $text = '[' . date('Y-m-d H:i:s') . ', '.$gericht_name.'] ' . $msg . (!empty($stats) ? ' ' . $stats : '')."\n";
+    file_put_contents($log, $text, FILE_APPEND);
+    exit($msg);
+}
+
 $client = new Client([
     // Base URI is used with relative requests
     'base_uri' => $base_uri,
     // You can set any number of default request options.
     'timeout'  => 5.0,
 ]);
-
-function stop($msg)
-{
-    global $stats;
-    $log = __DIR__ . '/storage/run.log';
-    $text = '[' . date('Y-m-d H:i:s') . '] ' . $msg . (!empty($stats) ? ' ' . $stats : '')."\n";
-    file_put_contents($log, $text, FILE_APPEND);
-    exit($msg);
-}
 
 /**
  * Liste
@@ -50,10 +55,10 @@ $headers = [
 ];
 
 $data = [
-    'ger_name' => 'Chemnitz',
+    'ger_name' => $gericht_name,
     'order_by' => 2,
     'land_abk' => 'sn',
-    'ger_id' => 'U1206',
+    'ger_id' => $gericht_id,
     'obj_arr' => [
         2, // Doppelhaushälfte,
         3, // Einfamilienhaus
@@ -87,7 +92,7 @@ if (!file_exists(__DIR__.'/storage')) {
 }
 file_put_contents(__DIR__.'/storage/last_response.html', $body);
 
-echo "fetched\n";
+echo $gericht_name." fetched\n";
 //$dom = simplexml_load_string($body);
 //echo $dom;
 
@@ -120,7 +125,7 @@ echo count($items)." items fetched\n";
 /**
  * Items identifizieren und mit Cache abgleichen
  */
-$cache_json = __DIR__.'/storage/items.json';
+$cache_json = __DIR__.'/storage/items_'.$gericht_name.'.json';
 //unlink($cache_json); // Debug
 $cache = [];
 if (file_exists($cache_json)) {
@@ -204,11 +209,11 @@ curl 'http://www.zvg-portal.de/index.php?button=showZvg&zvg_id=31626&land_abk=sn
     -H 'Referer: http://www.zvg-portal.de/index.php?button=Suchen'
 */
 function process_notify_items(&$items) {
-    global $base_uri, $details_dir, $client, $config;
+    global $base_uri, $details_dir, $client, $config, $gericht_name;
     if (!file_exists($details_dir)) {
         mkdir($details_dir, 0775);
     }
-    $handler = function($m) use ($base_uri, $details_dir, $client, $config) {
+    $handler = function($m) use ($base_uri, $details_dir, $client, $config, $gericht_name) {
         $url = $m[1];
         $id = $m[2];
         $headers = [
@@ -233,7 +238,10 @@ function process_notify_items(&$items) {
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </header>
 <body>
-        <div class="container">' . $body . '</div>
+        <div class="container">
+        <h1>'.$id.' ('.$gericht_name.')</h1>
+        ' . $body . '
+        </div>
 </body>
 </html>';
         file_put_contents($details_dir.'/'.$id.'.html', $body);
@@ -253,6 +261,7 @@ function process_notify_items(&$items) {
  */
 
 $mail_body = '
+<h1>Zwangsversteigerungen am Gericht '.$gericht_name.'</h1>
 <a href="'.$base_uri.'/index.php?button=Termine%20suchen"><strong>Zum Portal</strong></a> (sorry, direkte Absprünge funktionieren nicht)';
 if (!empty($notify_new)) {
     process_notify_items($notify_new);
@@ -272,7 +281,7 @@ file_put_contents(__DIR__.'/storage/last_mail.html', $mail_body);
  * Mailen
  */
 
-$subject = 'Zwangsversteigerung Update: '.$stats;
+$subject = 'Zwangsversteigerung '.$gericht_name.' Update: '.$stats;
 $from = 'Zwangsversteigerung Mailer';
 
 $transport = (new Swift_SmtpTransport($config['mail_host'], $config['mail_port'], 'tls'))

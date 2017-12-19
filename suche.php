@@ -49,15 +49,21 @@ $headers = [
     'Referer' => $base_uri.'/index.php?button=Termine%20suchen',
 ];
 
-$data_raw = 'ger_name=Chemnitz&order_by=2&land_abk=sn&ger_id=U1206&az1=&az2=&az3=&az4=&art=&obj=&obj_arr%5B%5D=3&obj_arr%5B%5D=15&obj_arr%5B%5D=16&obj_liste=15&obj_liste=16&str=&hnr=&plz=&ort=&ortsteil=&vtermin=&btermin=';
-/*$data = [
+$data = [
     'ger_name' => 'Chemnitz',
     'order_by' => 2,
     'land_abk' => 'sn',
     'ger_id' => 'U1206',
-    'obj_arr[]' => [3, 15, 16],
-    'obj_liste' => 16,
-];*/
+    'obj_arr' => [
+        2, // Doppelhaushälfte,
+        3, // Einfamilienhaus
+        15, // Baugrundstück
+        16, // unbebautes Grundstück
+        19 // Zweifamilienhaus
+    ],
+    //'obj_liste' => 16,
+];
+$data_raw = http_build_query($data);
 
 // http_build_query
 

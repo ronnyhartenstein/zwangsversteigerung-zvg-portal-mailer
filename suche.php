@@ -267,7 +267,7 @@ function process_notify_items(&$items) {
 </body>
 </html>';
         file_put_contents($details_dir.'/'.$id.'.html', $body);
-        return 'href='.$config['web_host'].'/storage/details/'.$id.'.html';
+        return 'href='.$config['web_host'].'/details/'.$id.'.html';
     };
     foreach ($items as &$item) {
         if ($item = preg_replace_callback('/href=(index\.php\?button=showZvg&zvg_id=(\d+)&land_abk=sn)/', $handler, $item)) {
@@ -275,9 +275,9 @@ function process_notify_items(&$items) {
         } else {
             echo "x";
         }
-        preg_match('!/storage/details/(\d+)!', $item, $match);
+        preg_match('!/details/(\d+)!', $item, $match);
         $id = $match[1];
-        $item = preg_replace('!href="[^"]+"!', 'href="' . $config['web_host'].'/storage/details/'.$id .'/amtliche_Bekanntmachung1.pdf"', $item);
+        $item = preg_replace('!href="[^"]+"!', 'href="' . $config['web_host'].'/details/'.$id .'/amtliche_Bekanntmachung1.pdf"', $item);
     }
 }
 

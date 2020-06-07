@@ -231,7 +231,8 @@ function process_notify_items(&$items) {
             echo 'Error: fetch ID '.$id.' - '.$response->getStatusCode();
             return $url.'#notfound';
         }
-        $body = utf8_encode($response->getBody()->getContents());
+        $body = $response->getBody()->getContents();
+        $body = preg_replace('!Informationen zum Gl.+ubiger:!', 'Informationen zum Gläubiger:', $body);
         $start = '<div id="inhalt"><!-- Inhalt -->';
         $end = '</div><!-- ende Inhalt -->';
         $body = substr($body, strpos($body, $start));

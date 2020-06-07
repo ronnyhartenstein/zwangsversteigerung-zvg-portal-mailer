@@ -60,8 +60,10 @@ $data = [
     'land_abk' => 'sn',
     'ger_id' => $gericht_id,
     'obj_arr' => [
+        1, // Reihenhaus
         2, // Doppelhaushälfte,
         3, // Einfamilienhaus
+        4, // Mehrfamilienhaus
         15, // Baugrundstück
         16, // unbebautes Grundstück
         19 // Zweifamilienhaus

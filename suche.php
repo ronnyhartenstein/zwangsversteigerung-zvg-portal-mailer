@@ -85,7 +85,7 @@ if ($response->getStatusCode() != 200) {
     stop('Error: Status '.$response->getStatusCode());
 }
 
-$body = $response->getBody()->getContents();
+$body = utf8_encode($response->getBody()->getContents());
 
 if (!file_exists(__DIR__.'/storage')) {
     mkdir(__DIR__.'/storage', 0775);
@@ -228,7 +228,7 @@ function process_notify_items(&$items) {
             echo 'Error: fetch ID '.$id.' - '.$response->getStatusCode();
             return $url.'#notfound';
         }
-        $body = $response->getBody()->getContents();
+        $body = utf8_encode($response->getBody()->getContents());
         $start = '<div id="inhalt"><!-- Inhalt -->';
         $end = '</div><!-- ende Inhalt -->';
         $body = substr($body, strpos($body, $start));

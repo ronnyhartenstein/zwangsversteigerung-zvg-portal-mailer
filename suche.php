@@ -85,7 +85,8 @@ if ($response->getStatusCode() != 200) {
     stop('Error: Status '.$response->getStatusCode());
 }
 
-$body = $response->getBody()->getContents();
+$body = utf8_encode($response->getBody()->getContents());
+$body = preg_replace('!<img src=images/pdf\.gif[^>]*>!', '', $body);
 
 if (!file_exists(__DIR__.'/storage')) {
     mkdir(__DIR__.'/storage', 0775);
@@ -228,11 +229,13 @@ function process_notify_items(&$items) {
             echo 'Error: fetch ID '.$id.' - '.$response->getStatusCode();
             return $url.'#notfound';
         }
-        $body = $response->getBody()->getContents();
+        $body = utf8_encode($response->getBody()->getContents());
         $start = '<div id="inhalt"><!-- Inhalt -->';
         $end = '</div><!-- ende Inhalt -->';
         $body = substr($body, strpos($body, $start));
         $body = substr($body, 0, strpos($body, $end) + strlen($end));
+        $body = preg_replace('!<img src=images/pdf\.gif[^>]*>!', '', $body);
+        $body = preg_replace('!<img class=screen src=images/externer_Link\.gif[^>]*>!', '', $body);
         $body = '<html>
 <header>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">

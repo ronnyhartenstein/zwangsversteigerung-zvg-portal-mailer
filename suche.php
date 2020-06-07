@@ -85,7 +85,7 @@ if ($response->getStatusCode() != 200) {
     stop('Error: Status '.$response->getStatusCode());
 }
 
-$body = utf8_encode($response->getBody()->getContents());
+$body = $response->getBody()->getContents();
 $body = preg_replace('!<img src=images/pdf\.gif[^>]*>!', '', $body);
 
 if (!file_exists(__DIR__.'/storage')) {

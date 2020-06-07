@@ -86,6 +86,7 @@ if ($response->getStatusCode() != 200) {
 }
 
 $body = utf8_encode($response->getBody()->getContents());
+$body = preg_replace('!<img src=images/pdf\.gif[^>]*>!', '', $body);
 
 if (!file_exists(__DIR__.'/storage')) {
     mkdir(__DIR__.'/storage', 0775);
@@ -233,6 +234,8 @@ function process_notify_items(&$items) {
         $end = '</div><!-- ende Inhalt -->';
         $body = substr($body, strpos($body, $start));
         $body = substr($body, 0, strpos($body, $end) + strlen($end));
+        $body = preg_replace('!<img src=images/pdf\.gif[^>]*>!', '', $body);
+        $body = preg_replace('!<img class=screen src=images/externer_Link\.gif[^>]*>!', '', $body);
         $body = '<html>
 <header>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">

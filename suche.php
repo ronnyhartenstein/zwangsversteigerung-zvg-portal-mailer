@@ -234,6 +234,25 @@ function process_notify_items(&$items) {
         $end = '</div><!-- ende Inhalt -->';
         $body = substr($body, strpos($body, $start));
         $body = substr($body, 0, strpos($body, $end) + strlen($end));
+        mkdir($details_dir.'/'.$id);
+        preg_match_all('!href="(\?[^>]+)"/>\W*(.*)</!m', $body, $matches, PREG_SET_ORDER);
+        foreach ($matches as $match) {
+            $url = '/index.php' . $match[1];
+            $filename = $match[2];
+            $filename = preg_replace('![^_a-zA-Z0-9\.]!m', '', $filename);
+
+            $response = $client->get($url, ['headers' => $headers]);
+            if ($response->getStatusCode() != 200) {
+                echo 'Error: fetch file '.$url.' - '.$response->getStatusCode();
+                continue;
+            }
+
+            file_put_contents($details_dir.'/'.$id . '/' . $filename, $response->getBody()->getContents());
+
+            $body = str_replace($match[1], $id . '/' . $filename, $body);
+        }
+        $body = str_replace('href="?', 'href="https://www.zvg-portal.de/index.php?', $body);
+
         $body = preg_replace('!<img src=images/pdf\.gif[^>]*>!', '', $body);
         $body = preg_replace('!<img class=screen src=images/externer_Link\.gif[^>]*>!', '', $body);
         $body = '<html>
@@ -256,6 +275,9 @@ function process_notify_items(&$items) {
         } else {
             echo "x";
         }
+        preg_match('!/storage/details/(\d+)!', $item, $match);
+        $id = $match[1];
+        $item = preg_replace('!href="[^"]+"!', 'href="' . $config['web_host'].'/storage/details/'.$id .'/amtliche_Bekanntmachung1.pdf"', $item);
     }
 }
 

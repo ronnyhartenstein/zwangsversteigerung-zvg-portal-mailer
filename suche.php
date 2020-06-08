@@ -60,8 +60,10 @@ $data = [
     'land_abk' => 'sn',
     'ger_id' => $gericht_id,
     'obj_arr' => [
+        1, // Reihenhaus
         2, // Doppelhaushälfte,
         3, // Einfamilienhaus
+        4, // Mehrfamilienhaus
         15, // Baugrundstück
         16, // unbebautes Grundstück
         19 // Zweifamilienhaus
@@ -229,7 +231,8 @@ function process_notify_items(&$items) {
             echo 'Error: fetch ID '.$id.' - '.$response->getStatusCode();
             return $url.'#notfound';
         }
-        $body = utf8_encode($response->getBody()->getContents());
+        $body = $response->getBody()->getContents();
+        $body = preg_replace('!Informationen zum Gl.+ubiger:!', 'Informationen zum Gläubiger:', $body);
         $start = '<div id="inhalt"><!-- Inhalt -->';
         $end = '</div><!-- ende Inhalt -->';
         $body = substr($body, strpos($body, $start));
